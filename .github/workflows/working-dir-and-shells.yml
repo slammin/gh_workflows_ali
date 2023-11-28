@@ -4,6 +4,7 @@ on:
 defaults:
   run:
     shell: bash
+    # working-directory: /de/ed
 jobs:
 
   display-working-dir-info-linux:
@@ -17,6 +18,10 @@ jobs:
           echo $GITHUB_SHA
           echo $GITHUB_REPOSITORY
           echo $GITHUB_WORKSPACE
+
+      - name: Change Working Dir
+        working-directory: /home/runner
+        run: pwd
 
   display-working-dir-info-windows:
     runs-on: windows-latest
