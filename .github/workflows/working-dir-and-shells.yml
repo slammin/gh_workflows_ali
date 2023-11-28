@@ -23,7 +23,7 @@ jobs:
         working-directory: /home/runner
         run: pwd
 
-      - name: Does $GITHUB_WORKSPACE change?
+      - name: Does $GITHUB_WORKSPACE change?  (answer is no)
         run: echo $GITHUB_WORKSPACE
 
   display-working-dir-info-windows:
