@@ -14,4 +14,4 @@ jobs:
           who-to-greet: Sam
 
       - name: Echo output from action
-        run: echo "${{ steps.greet.outputs.time }}"
+        run: echo "The meeting time was ${{ steps.greet.outputs.time }}"
