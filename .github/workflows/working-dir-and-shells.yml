@@ -9,6 +9,7 @@ jobs:
   display-working-dir-info-linux:
     runs-on: ubuntu-latest
     steps:
+
       - name: Display Working Dir & List Files
         run: |
           pwd
@@ -23,6 +24,7 @@ jobs:
       run:
         shell: pwsh
     steps:
+
       - name: Display Working Dir & List Files
         run: |
           Get-Location
@@ -30,6 +32,7 @@ jobs:
           echo $env:GITHUB_SHA
           echo $env:GITHUB_REPOSITORY
           echo $env:GITHUB_WORKSPACE
+
       - name: Run commands in bash on windows
         shell: bash
         run: |
