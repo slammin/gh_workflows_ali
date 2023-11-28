@@ -23,6 +23,9 @@ jobs:
         working-directory: /home/runner
         run: pwd
 
+      - name: Does $GITHUB_WORKSPACE change?
+        run: echo $GITHUB_WORKSPACE
+
   display-working-dir-info-windows:
     runs-on: windows-latest
     defaults:
