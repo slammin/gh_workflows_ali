@@ -1,6 +1,9 @@
 name: Working Dirs & Shells
 on:
   push:
+defaults:
+  run:
+    shell: bash
 jobs:
 
   display-working-dir-info-linux:
@@ -16,8 +19,19 @@ jobs:
 
   display-working-dir-info-windows:
     runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
     steps:
       - name: Display Working Dir & List Files
+        run: |
+          Get-Location
+          dir
+          echo $env:GITHUB_SHA
+          echo $env:GITHUB_REPOSITORY
+          echo $env:GITHUB_WORKSPACE
+      - name: Run commands in bash on windows
+        shell: bash
         run: |
           pwd
           ls -a
