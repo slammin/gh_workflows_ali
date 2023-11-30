@@ -1,0 +1,10 @@
+name: External events
+on:
+  repository_dispatch:
+jobs:
+  echo-a-string:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Echo "Depository Dispatch"
+        run: echo "Depo Dispatch"
