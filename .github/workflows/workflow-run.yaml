@@ -1,0 +1,12 @@
+name: Run a workflow only when another workflow is ran
+on:
+  workflow_run:
+    workflows: ['Work with trigger events']
+    types: [completed]
+jobs:
+
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo output
+        run: echo 'workflow-run completed'
