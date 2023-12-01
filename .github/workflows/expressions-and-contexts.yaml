@@ -24,8 +24,8 @@ jobs:
 
       - name: Dump Contexts
         run: |
-          echo "${{ toJson(github) }}"
-          echo "${{ toJson(job) }}"
-          echo "${{ toJson(secrets) }}"
-          echo "${{ toJson(steps) }}"
-          echo "${{ toJson(runner) }}"
+          echo "github context ${{ toJson(github) }}"
+          echo "job context ${{ toJson(job) }}"
+          echo "secrets context ${{ toJson(secrets) }}"
+          echo "steps context ${{ toJson(steps) }}"
+          echo "runner context ${{ toJson(runner) }}"
