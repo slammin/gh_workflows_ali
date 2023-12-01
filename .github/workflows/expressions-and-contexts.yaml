@@ -13,10 +13,10 @@ jobs:
         id: expressions
         run: |
           echo ${{ 1 }}
-          echo ${{ "this is a string" }}
+          echo ${{ 'Hello, world!' }}
           echo ${{ null }}
           echo ${{ false }}
           echo ${{ 1 > 2 }}
-          echo ${{ 'string' == "String" }}
+          echo ${{ 'string' == 'String' }}
           echo ${{ true && false }}
           echo ${{ true || (false && true) }}
