@@ -2,6 +2,7 @@ name: Work with scheduled triggers and the stale action
 on:
   schedule:
     - cron: "40 3 * * *"
+  workflow_dispatch:
 jobs:
 
   stale:
