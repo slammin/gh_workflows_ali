@@ -1,5 +1,5 @@
 name: Expressions and Contexts
-run-name: "Expressions and Contexts by ${{ github.actor }}"
+run-name: "Expressions and Contexts by @${{ github.actor }} event:${{ github.event_name }}"
 on:
   push:
   pull_request:
@@ -25,7 +25,7 @@ jobs:
 
       - name: Dump Contexts
         run: |
-          echo "github context ${{ toJson(github) }}"
+          echo "github context ${{ github }}"
           echo "job context ${{ toJson(job) }}"
           echo "secrets context ${{ toJson(secrets) }}"
           echo "steps context ${{ toJson(steps) }}"
