@@ -9,12 +9,13 @@ jobs:
 
   only-run-issues-pr:
     runs-on: ubuntu-latest
-    if: contains(fromJson('["issues", "pull_request"]'), github.event_name)
+    if: contains(fromJson('["issues", "pull_request"]'), github.event_name)  ## Is checking if github.event_name is in the array including 'issues' and 'pull_request'
     steps:
 
-      - name: Echo something
+      - name: Echo something if issue has bug label
+        if: contains(github.event.issue.labels.*.name, 'bug')
         run: |
-          echo 'something'
+          echo ${{ join(github.event.issue.labels.*.name) }}
 
   using-expressions-and-contexts:
     runs-on: ubuntu-latest
