@@ -9,7 +9,7 @@ jobs:
 
   only-run-issues-pr:
     runs-on: ubuntu-latest
-    if: github.event_name == 'issues' || 'pull_request'
+    if: contains(fromJson('["issues", "pull_request"]'), github.event_name)
     steps:
 
       - name: Echo something
