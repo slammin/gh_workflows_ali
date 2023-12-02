@@ -9,6 +9,7 @@ jobs:
 
   using-expressions-and-contexts:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
     steps:
 
       - name: Expressions
