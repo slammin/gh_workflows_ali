@@ -13,10 +13,15 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
 
-      - name: log ENV VAR
+      - name: set a few ENV VAR
+        run: |
+          echo "THE_DATE=$(date)" >> "$GITHUB_ENV"
+          echo "JOB_LEVEL_ENV=$RANDOM" >> "$GITHUB_ENV"
+
+      - name: echo out ENV VAR
         run: echo $GITHUB_REF
 
-      - name: log context
+      - name: lecho out context
         run: echo ${{ github.ref }}
 
       - name: log custom ENV vars
@@ -28,3 +33,4 @@ jobs:
           echo $STEP_LEVEL_ENV
           echo $WF_LEVEL_ENV
           echo $JOB_LEVEL_ENV
+          echo $THE_DATE
