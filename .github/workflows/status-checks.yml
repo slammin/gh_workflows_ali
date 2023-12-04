@@ -1,0 +1,36 @@
+name: Check for status of jobs
+on:
+  push:
+jobs:
+
+  job-1:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: sleep for 20
+        run: sleep 20
+
+      - name: run on failure
+        if: failure()
+        run: echo "I ran on failure"
+
+      - name: run on success
+        if: success()  ## default behavior, not needed for something so simple like this step
+        run: echo "I ran on success"
+
+      - name: run always
+        if: always()
+        run: echo "I always run"
+
+      - name: runs when cancelled
+        if: cancelled()
+        run: echo "I run when cancelled"
+
+  job-2:
+    needs: job-1
+    runs-on: ubuntu-latest
+    if: failure()
+    steps:
+
+      - name: run on failure
+        run: echo "I ran on failure of job-1"
