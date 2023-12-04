@@ -36,7 +36,7 @@ jobs:
 
       - name: Dump Contexts
         run: |
-          echo "github context ${{ github }}"
+          echo "github context ${{ toJson(github) }}"
           echo "job context ${{ toJson(job) }}"
           echo "secrets context ${{ toJson(secrets) }}"
           echo "steps context ${{ toJson(steps) }}"
