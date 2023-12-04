@@ -7,15 +7,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: sleep for 20
+      - name: step 1 -- sleep for 20
         run: sleep 20
 
-      - name: fail
+      - name: step 2 -- failure
+        id: step-2
         run: ls -%
 
-      - name: run on failure
+      - name: always run on failure
         if: failure()
-        run: echo "I ran on failure"
+        run: echo "I always run on failure"
+
+      - name: run on failure for only step-2
+        if: failure() && steps.step-2.conclusion == 'failure'
+        run: echo "I ran on failure for step-2"
 
       - name: run on success
         if: success()  ## default behavior, not needed for something so simple like this step
