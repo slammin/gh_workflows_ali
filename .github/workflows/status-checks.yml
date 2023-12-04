@@ -10,6 +10,9 @@ jobs:
       - name: sleep for 20
         run: sleep 20
 
+      - name: fail
+        run: ls -%
+
       - name: run on failure
         if: failure()
         run: echo "I ran on failure"
