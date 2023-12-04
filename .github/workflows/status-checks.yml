@@ -16,7 +16,7 @@ jobs:
 
       - name: run on success
         if: success()  ## default behavior, not needed for something so simple like this step
-        run: echo "I ran on success"
+        run: echo "I ran on success (which is also the default behavior..no need to define if conditional)"
 
       - name: run always
         if: always()
