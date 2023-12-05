@@ -18,10 +18,18 @@ jobs:
           echo "THE_DATE=$(date)" >> "$GITHUB_ENV"
           echo "JOB_LEVEL_ENV=$RANDOM" >> "$GITHUB_ENV"
 
+      - name: set a few ENV VAR using multiline
+        run: |
+          echo "RANDOM_JOKE<<EOF"
+          echo "Here is a joke:"
+          echo "Why did the bird cross the road?"
+          echo "No idea."
+          echo EOF >> "$GITHUB_ENV"
+
       - name: echo out ENV VAR
         run: echo $GITHUB_REF
 
-      - name: lecho out context
+      - name: echo out context
         run: echo ${{ github.ref }}
 
       - name: log custom ENV vars
