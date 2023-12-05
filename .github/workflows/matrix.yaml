@@ -25,6 +25,11 @@ jobs:
             node-version: 15
     steps:
 
+      - name: Fail experimental matrix
+        if: matrix.experimental == true
+        run: |
+          echo ls -&%
+
       - name: echo out the matrix
         run: |
           echo '${{ toJson(matrix) }}'
