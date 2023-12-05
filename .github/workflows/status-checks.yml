@@ -12,6 +12,7 @@ jobs:
 
       - name: step 2 -- failure
         id: step-2
+        continue-on-error: true
         run: ls -%
 
       - name: always run on failure
