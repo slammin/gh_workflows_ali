@@ -4,6 +4,7 @@ on:
 jobs:
 
   node-matrix:
+    name: ajob
     runs-on: ubuntu-latest
     strategy:
       matrix:
