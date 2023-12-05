@@ -27,7 +27,7 @@ jobs:
 
       - name: echo out the matrix
         run: |
-          echo ${{ toJson(matrix) }}
+          echo '${{ toJson(matrix) }}'
 
       - name: output the pre node version
         run: node -v
