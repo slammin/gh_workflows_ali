@@ -8,7 +8,8 @@ jobs:
     steps:
 
       - name: step 1 -- sleep for 10
-        run: sleep 10
+        run: sleep 62
+        timeout-minutes: 1
 
       - name: step 2 -- failure
         id: step-2
