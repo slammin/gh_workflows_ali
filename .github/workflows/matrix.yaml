@@ -4,12 +4,30 @@ on:
 jobs:
 
   node-matrix:
+    continue-on-error: true
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         node-version: [13,14,15]
         os: [ubuntu-latest,windows-latest]
+        include:
+          - os: ubuntu-latest
+            is-ubuntu: tue
+          - os: macos-latest
+            node-version: 16
+          - experimental: false
+          - os: ubuntu-latest
+            node-version: 13
+            experimental: true
+        exclude:
+          - os: ubuntu-latest
+            node-version: 15
     steps:
+
+      - name: echo out the matrix
+        run: |
+          echo ${{ toJson(matrix) }}
 
       - name: output the pre node version
         run: node -v
