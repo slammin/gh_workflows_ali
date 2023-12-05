@@ -16,6 +16,5 @@ jobs:
     steps:
 
       - name: Fail experimental matrix
-        if: matrix.experimental == true
         run: |
-          echo ls -&%
+          echo '${{ toJson(matrix) }}'
