@@ -1,0 +1,48 @@
+name: Dynamic matrix with user input for matrix settings
+on:
+  workflow_dispatch:
+    inputs:
+      os:
+        description: 'the os to run workflow on'
+        default: "ubuntu-latest,windows-latest"
+        type: string
+      node-version:
+        description: 'the node version to run workflow on'
+        default: "14,15,16"
+        type: string
+jobs:
+  prepare-matrix:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: create an output value to pass to other steps and jobs
+        run: echo "step-out=value1" >> $GITHUB_OUTPUT
+        id: step-1
+
+      - name: create an output value to pass to other steps and jobs
+        run: echo "step-out=value2" >> $GITHUB_OUTPUT
+        id: step-2
+
+      - name: echo all outputs of this job
+        run: |
+          echo '${{ steps.step-1.outputs.step-output }}'
+          echo '${{ steps.step-2.outputs.step-output }}'
+
+  node-matrix:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node-version: [13,14,15]
+        os: [ubuntu-latest,windows-latest]
+    steps:
+
+      - name: output the pre node version
+        run: node -v
+
+      - name: set up node using matrix
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: output the post node version
+        run: node -v
