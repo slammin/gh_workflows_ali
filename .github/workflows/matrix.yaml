@@ -7,7 +7,7 @@ jobs:
     continue-on-error: true
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false
+      # fail-fast: false
       matrix:
         node-version: [13,14,15]
         os: [ubuntu-latest,windows-latest]
@@ -28,7 +28,7 @@ jobs:
       - name: Fail experimental matrix
         if: matrix.experimental == true
         run: |
-          echo ls -&%
+          exit 1
 
       - name: echo out the matrix
         run: |
