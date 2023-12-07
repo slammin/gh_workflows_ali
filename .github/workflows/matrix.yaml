@@ -4,7 +4,7 @@ on:
 jobs:
 
   node-matrix:
-    continue-on-error: true
+    # continue-on-error: true
     runs-on: ${{ matrix.os }}
     strategy:
       # fail-fast: false
