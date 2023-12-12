@@ -48,22 +48,22 @@ jobs:
           echo "${{ fromJson(needs.prepare-matrix.outputs.matrix-arrays).node-version }}"
           echo "${{ fromJson(needs.prepare-matrix.outputs.matrix-arrays).os }}"
 
-  # node-matrix:
-  #   runs-on: ${{ matrix.os }}
-  #   needs: prepare-matrix
-  #   strategy:
-  #     matrix:
-  #       node-version: ${{ needs.prepare-matrix.outputs.result.node-version }}
-  #       os: ${{ needs.prepare-matrix.outputs.result.os }}
-  #   steps:
+  node-matrix:
+    runs-on: ${{ matrix.os }}
+    needs: prepare-matrix
+    strategy:
+      matrix:
+        node-version: ${{ fromJson(needs.prepare-matrix.outputs.matrix-arrays).node-version }}
+        os: ${{ fromJson(needs.prepare-matrix.outputs.matrix-arrays).os }}
+    steps:
 
-  #     - name: output the pre node version
-  #       run: node -v
+      - name: output the pre node version
+        run: node -v
 
-  #     - name: set up node using matrix
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
+      - name: set up node using matrix
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
 
-  #     - name: output the post node version
-  #       run: node -v
+      - name: output the post node version
+        run: node -v
