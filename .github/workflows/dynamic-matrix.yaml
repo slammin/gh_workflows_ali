@@ -19,7 +19,7 @@ jobs:
         id: matrix-arrays
         uses: actions/github-script@v6
         with:
-          script: "return {'os': inputs.os.split(','), 'node-version': inputs.node-version.split(',') }"
+          script: "return {'os': context.payload.inputs['os'].split(','), 'node-version': context.payload.inputs['node-version'].split(',') }"
           result-encoding: json
 
       - run: |
