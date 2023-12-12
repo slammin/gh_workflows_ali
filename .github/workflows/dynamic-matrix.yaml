@@ -15,6 +15,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - name: run javascript code to convert string to list
+        id: matrix-arrays
+        uses: actions/github-script@v6
+        with:
+          script: "return {'os': context.pyaload.inputs['os'].split(','), 'node-version': context.pyaload.inputs['node-version'].split(',') }"
+          result-encoding: json
+
+      - run: |
+          echo "${{ steps.matrix-arrays.outputs.result }}"
+
       - name: create an output value to pass to other steps and jobs
         run: echo "step-output=value1" >> $GITHUB_OUTPUT
         id: step-1
