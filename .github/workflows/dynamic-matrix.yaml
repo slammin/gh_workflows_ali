@@ -16,11 +16,11 @@ jobs:
     steps:
 
       - name: create an output value to pass to other steps and jobs
-        run: echo "step-out=value1" >> $GITHUB_OUTPUT
+        run: echo "step-output=value1" >> $GITHUB_OUTPUT
         id: step-1
 
       - name: create an output value to pass to other steps and jobs
-        run: echo "step-out=value2" >> $GITHUB_OUTPUT
+        run: echo "step-output=value2" >> $GITHUB_OUTPUT
         id: step-2
 
       - name: echo all outputs of this job
