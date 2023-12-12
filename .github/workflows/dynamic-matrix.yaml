@@ -13,6 +13,8 @@ on:
 jobs:
   prepare-matrix:
     runs-on: ubuntu-latest
+    outputs:
+      matrix-arrays: ${{ steps.matrix-arrays.outputs.result }}
     steps:
 
       - name: run javascript code to convert string to list
@@ -38,21 +40,30 @@ jobs:
           echo "${{ steps.step-1.outputs.step-output }}"
           echo "${{ steps.step-2.outputs.step-output }}"
 
-  node-matrix:
+  echo-output:
     runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        node-version: [13,14,15]
-        os: [ubuntu-latest,windows-latest]
+    needs: prepare-matrix
     steps:
+      - run: |
+          echo "${{ needs.prepare-matrix.outputs.result.node-version }}"
+          echo "${{ needs.prepare-matrix.outputs.result.os }}"
 
-      - name: output the pre node version
-        run: node -v
+  # node-matrix:
+  #   runs-on: ${{ matrix.os }}
+  #   needs: prepare-matrix
+  #   strategy:
+  #     matrix:
+  #       node-version: ${{ needs.prepare-matrix.outputs.result.node-version }}
+  #       os: ${{ needs.prepare-matrix.outputs.result.os }}
+  #   steps:
 
-      - name: set up node using matrix
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
+  #     - name: output the pre node version
+  #       run: node -v
 
-      - name: output the post node version
-        run: node -v
+  #     - name: set up node using matrix
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: ${{ matrix.node-version }}
+
+  #     - name: output the post node version
+  #       run: node -v
