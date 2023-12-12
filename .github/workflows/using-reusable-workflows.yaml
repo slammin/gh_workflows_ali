@@ -1,0 +1,16 @@
+name: Calling reusable workflows
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'a name'
+        type: string
+        default: 'Bob'
+        required: true
+jobs:
+  calling-a-reusable-wf:
+    uses: slammin/gh_workflows_ali_1/.github/workflows/reusable.yaml@main
+    with:
+      name: '${{ inputs.name }}'
+    secrets:
+      access-token: '${{ secrets.GH_TOKEN }}'
