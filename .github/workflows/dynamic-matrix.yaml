@@ -25,8 +25,8 @@ jobs:
 
       - name: echo all outputs of this job
         run: |
-          echo '${{ steps.step-1.outputs.step-output }}'
-          echo '${{ steps.step-2.outputs.step-output }}'
+          echo "${{ steps.step-1.outputs.step-output }}"
+          echo "${{ steps.step-2.outputs.step-output }}"
 
   node-matrix:
     runs-on: ${{ matrix.os }}
