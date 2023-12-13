@@ -7,19 +7,18 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: node:20.3-alpine3.17
-      # credentials:
-      #   username:
-      #   password:
       env:
         API_URL: some-url.com
       ports:
         - 80
+      # credentials:
+      #   username:
+      #   password:
       # volumes:
       #   - vol_name:/path/in/container
       #   - path/to/container
       #   - /path/in/host:/path/in/container
       # options: --cpus 1
-
     steps:
 
       - name: Log Node & OS Versions
@@ -30,3 +29,16 @@ jobs:
       - name: Echo env var
         run: |
           echo $API_URL
+
+      - name: Container in a steps
+        uses: docker://node:18.16-apline3.17
+        with:
+          entrypoint: /usr/local/bin/node
+          args: -p 2+3
+
+
+      - name: Container in a steps
+        uses: docker://node:18.16-apline3.17
+        with:
+          # entrypoint: /usr/local/bin/node  ## By default the node container has entrypoint of node
+          args: -v
