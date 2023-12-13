@@ -31,14 +31,13 @@ jobs:
           echo $API_URL
 
       - name: Container in a steps
-        uses: docker://node:18.16-apline3.17
+        uses: docker://node:18.19-apline
         with:
           entrypoint: /usr/local/bin/node
           args: -p 2+3
 
-
       - name: Container in a steps
-        uses: docker://node:18.16-apline3.17
+        uses: docker://node:18.19-apline
         with:
           # entrypoint: /usr/local/bin/node  ## By default the node container has entrypoint of node
           args: -v
