@@ -30,6 +30,10 @@ jobs:
         run: |
           echo $API_URL
 
+      - name: Create file to prove files are carried across containers within job
+        run: |
+          echo 'some text' > file_in_job_container.txt
+
       - name: Container in a steps
         uses: docker://node:18.19-alpine
         with:
@@ -41,3 +45,9 @@ jobs:
         with:
           # entrypoint: /usr/local/bin/node  ## By default the node container has entrypoint of node
           args: -v
+
+      - name: Display file contents of file_in_job_container.txt
+        uses: docker://node:18.19-alpine
+        with:
+          entrypoint: cat
+          args: file_in_job_container.txt
