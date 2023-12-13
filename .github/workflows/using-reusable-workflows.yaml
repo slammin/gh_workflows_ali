@@ -17,7 +17,11 @@ jobs:
       access-token: '${{ secrets.GH_TOKEN }}'
 
   calling-reusable-wf-internal:
+    permissions:
+      issues: read
     uses: ./.github/workflows/reuse-wf.yaml
+    secrets: inherit
+      # access-token: '${{ secrets.GH_TOKEN }}'
 
   uses-reusuable-wf-output:
     runs-on: ubuntu-latest

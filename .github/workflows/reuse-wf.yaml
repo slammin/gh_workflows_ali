@@ -10,6 +10,7 @@ on:
         value: ${{ jobs.generate-output.outputs.year }}
 
 jobs:
+
   generate-output:
     runs-on: ubuntu-latest
     outputs:
@@ -22,3 +23,10 @@ jobs:
         run: |
           echo "date=$(date)" >> $GITHUB_OUTPUT
           echo "year=2023" >> $GITHUB_OUTPUT
+
+  nested-workflow:
+    uses: slammin/gh_workflows_ali_1/.github/workflows/reusable.yaml@main
+    with:
+      name: 'BillyBob'
+    secrets:
+      access-token: '${{ secrets.GH_TOKEN }}'
