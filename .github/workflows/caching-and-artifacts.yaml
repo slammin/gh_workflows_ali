@@ -13,8 +13,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: "npm-cache"
-
+          key: ${{ runner.os }}-npm-cache-${{ hashFiles('**/package-lock.json') }}  # npm-cache-21981841 changes when package-lock.json changes
+          restore-keys: |
+            ${{ runner.os }}-npm-cache
       - name: Display Cache Output
         run: echo '${{ toJSON(steps.cache-dependencies.outputs) }}'
 
