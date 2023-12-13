@@ -1,0 +1,24 @@
+name: Reusable wf within same repo
+on:
+  workflow_call:
+    outputs:
+      date:
+        description: The date
+        value: ${{ jobs.generate-output.outputs.date }}
+      year:
+        description: The year
+        value: ${{ jobs.generate-output.outputs.year }}
+
+jobs:
+  generate-output:
+    runs-on: ubuntu-latest
+    outputs:
+      date: ${{ steps.date-step.outputs.date }}
+      year: ${{ steps.date-step.outputs.year }}
+    steps:
+
+      - name: generate output
+        id: date-step
+        run: |
+          echo "date=$(date)" >> $GITHUB_OUTPUT
+          echo "year=2023" >> $GITHUB_OUTPUT
