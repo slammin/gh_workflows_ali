@@ -8,9 +8,22 @@ on:
         default: 'Bob'
         required: true
 jobs:
-  calling-a-reusable-wf:
+
+  calling-reusable-wf-external:
     uses: slammin/gh_workflows_ali_1/.github/workflows/reusable.yaml@main
     with:
       name: '${{ inputs.name }}'
     secrets:
       access-token: '${{ secrets.GH_TOKEN }}'
+
+  calling-reusable-wf-internal:
+    uses: ./.github/workflows/reuse-wf.yaml
+
+  uses-reusuable-wf-output:
+    runs-on: ubuntu-latest
+    needs: calling-reusable-wf-internal
+    steps:
+
+      - run: |
+          echo ${{ needs.calling-reusable-wf-internal.outputs.date }}
+          echo ${{ needs.calling-reusable-wf-internal.outputs.year }}
