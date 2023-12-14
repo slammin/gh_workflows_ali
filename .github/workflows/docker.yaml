@@ -58,6 +58,6 @@ jobs:
       - name: Use script in docker container entrypoint
         uses: docker://node:18.19-alpine
         with:
-          # entrypoint: ${GITHUB_WORKSPACE}/script.sh
-          entrypoint: ./script.sh
+          entrypoint: "${GITHUB_WORKSPACE}/script.sh"
+          # entrypoint: ./script.sh
           args: "Some string"
