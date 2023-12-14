@@ -55,7 +55,7 @@ jobs:
       - name: Checkout local repo to get access to script
         uses: actions/checkout@v3
 
-      - run: ls $GITHUB_WORKSPACE
+      - run: cat $GITHUB_WORKSPACE/script.sh
 
       - name: Use script in docker container entrypoint
         uses: docker://node:18.19-alpine
