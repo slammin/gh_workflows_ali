@@ -1,5 +1,5 @@
 name: Hello World
-author: Ali Alaa
+author: Fred Fire
 description: "Greet someone and record the time"
 inputs:
   who_to_greet:
